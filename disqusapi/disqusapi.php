@@ -118,12 +118,17 @@ class DisqusResource {
             throw new DisqusAPIError($data->code, $data->response);
         }
         
+        $api->lastCursor = $data->cursor;
+        
         return $data->response;
     }
 }
 
 
 class DisqusAPI extends DisqusResource {
+    
+    public $lastCursor = NULL;
+    
     public $formats = array(
         'json' => 'dsq_json_decode'
     );
